@@ -46,12 +46,21 @@
        this.f_8509_ = p_8528_;
        this.f_8513_ = p_8532_;
        this.f_8510_ = p_8529_;
-@@ -78,7 +_,7 @@
+@@ -78,7 +_,14 @@
     public void m_8533_() {
        List<Entity> list = this.f_8510_.m_20197_();
        if (!list.equals(this.f_8523_)) {
 -         this.f_8513_.accept(new ClientboundSetPassengersPacket(this.f_8510_));
 +         this.m_8538_(new ClientboundSetPassengersPacket(this.f_8510_)); // CraftBukkit
++         if (this.f_8510_ instanceof LivingEntity) {
++            this.m_8538_(new ClientboundRotateHeadPacket(this.f_8510_, (byte)Mth.m_14143_(this.f_8510_.m_6080_() * 256.0F / 360.0F))); // CraftBukkit - keep mounted entity rotation in sync
++         }
++
++         for(Entity entity : list) {
++            if (entity instanceof LivingEntity) {
++               this.m_8538_(new ClientboundRotateHeadPacket(entity, (byte)Mth.m_14143_(entity.m_6080_() * 256.0F / 360.0F))); // CraftBukkit - keep passenger rotation in sync
++            }
++         }
           m_277180_(list, this.f_8523_).forEach((p_289307_) -> {
              if (p_289307_ instanceof ServerPlayer serverplayer1) {
                 serverplayer1.f_8906_.m_9774_(serverplayer1.m_20185_(), serverplayer1.m_20186_(), serverplayer1.m_20189_(), serverplayer1.m_146908_(), serverplayer1.m_146909_());
@@ -130,7 +139,7 @@
 +      }
 +
 +      // CraftBukkit start - MC-109346: Fix for nonsensical head yaw
-+      if (this.f_8510_ instanceof ServerPlayer) {
++      if (this.f_8510_ instanceof LivingEntity) {
 +         p_289563_.accept(new ClientboundRotateHeadPacket(this.f_8510_, (byte) Mth.m_14143_(this.f_8510_.m_6080_() * 256.0F / 360.0F)));
 +      }
 +      // CraftBukkit end
