@@ -341,11 +341,11 @@
 +            Location curPos = this.getCraftPlayer().getLocation(); // Spigot
  
 -            entity.m_19890_(d3, d4, d5, f, f1);
-+            entity.m_19890_(d3, d4, d5, this.f_9743_.m_146908_(), this.f_9743_.m_146909_());
++            entity.m_19890_(d3, d4, d5, f, f1);
              boolean flag3 = serverlevel.m_45756_(entity, entity.m_20191_().m_82406_(0.0625D));
              if (flag && (flag2 || !flag3)) {
 -               entity.m_19890_(d0, d1, d2, f, f1);
-+               entity.m_19890_(d0, d1, d2, this.f_9743_.m_146908_(), this.f_9743_.m_146909_());
++               entity.m_19890_(d0, d1, d2, f, f1);
                 this.f_9742_.m_129512_(new ClientboundMoveVehiclePacket(entity));
                 return;
              }
@@ -415,6 +415,9 @@
 +                  }
 +               }
 +            }
++            // Keep rider look synced while mounted so other players receive the updated passenger rotation.
++            this.f_9743_.m_19890_(this.f_9743_.m_20185_(), this.f_9743_.m_20186_(), this.f_9743_.m_20189_(), f, f1);
++            this.f_9743_.m_284548_().m_7726_().f_8325_.m_140201_(this.f_9743_, new net.minecraft.network.protocol.game.ClientboundRotateHeadPacket(this.f_9743_, (byte) net.minecraft.util.Mth.m_14143_(this.f_9743_.m_6080_() * 256.0F / 360.0F)));
 +            // CraftBukkit end
  
              this.f_9743_.m_284548_().m_7726_().m_8385_(this.f_9743_);
