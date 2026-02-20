@@ -62,8 +62,9 @@ public class MohistMCStart {
             Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
         }
         if (MohistConfigUtil.INSTALLATIONFINISHED() && MohistConfigUtil.aBoolean("mohist.show_logo", true)) {
-            System.out.printf("%n%s%n%s - %s, Java(%s) %s PID: %s%n",
+            System.out.printf("%n%s%n%s%n%s - %s, Java(%s) %s PID: %s%n",
                     Logo.asMohist(),
+                    "edited by Watherfoxx - 0.1",
                     i18n.as("mohist.launch.welcomemessage"),
                     getVersion(),
                     System.getProperty("java.class.version"),
